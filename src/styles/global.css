@@ -21,6 +21,16 @@
 	--gray-gradient: rgba(var(--gray-light), 50%), #fff;
 	--box-shadow: 0 2px 6px rgba(var(--gray), 25%), 0 8px 24px rgba(var(--gray), 33%),
 		0 16px 32px rgba(var(--gray), 33%);
+
+		--melon: hsla(0, 100%, 80%, 1);
+		--sunset: hsla(33, 100%, 78%, 1);
+		--cream: hsla(62, 100%, 80%, 1);
+		--tea-green: hsla(110, 100%, 82%, 1);
+		--electric-blue: hsla(185, 100%, 80%, 1);
+		--jordy-blue: hsla(217, 100%, 77%, 1);
+		--periwinkle: hsla(258, 100%, 83%, 1);
+		--mauve: hsla(310, 100%, 84%, 1);
+		--baby-powder: hsla(60, 100%, 99%, 1);
 }
 @font-face {
 	font-family: 'Atkinson';
@@ -60,7 +70,7 @@ h3,
 h4,
 h5,
 h6 {
-	margin: 0 0 0.5rem 0;
+	margin: .5em 0 0.5em;
 	color: hsl(var(--foreground-brighter));
 	line-height: 1.2;
 }
@@ -95,7 +105,10 @@ p {
 	margin-bottom: 1em;
 }
 .prose p {
-	margin-bottom: 2em;
+	margin-block: .75rem;
+}
+.prose img {
+	margin: 1.5rem 0;
 }
 textarea {
 	width: 100%;
@@ -124,6 +137,25 @@ pre {
 pre > code {
 	all: unset;
 }
+@layer code {
+	
+	pre.css-variables {
+		color: hsla( var(--blue), 1 );
+	}
+	pre.astro-code {
+		background: hsl(var(--background))!important;
+		line-height: 1.4;
+	}
+	pre.astro-code { color: var(--baby-powder); }
+	pre.astro-code .prompt-code:nth-child(n+1) { color: var(--melon); }
+	pre.astro-code .prompt-code:nth-child(n+2) { color: var(--sunset); }
+	pre.astro-code .prompt-code:nth-child(n+3) { color: var(--cream); }
+	pre.astro-code .prompt-code:nth-child(n+4) { color: var(--tea-green); }
+	pre.astro-code .prompt-code:nth-child(n+5) { color: var(--electric-blue); }
+	pre.astro-code .prompt-code:nth-child(n+6) { color: var(--jordy-blue); }
+	pre.astro-code .prompt-code:nth-child(n+7) { color: var(--periwinkle); }
+	pre.astro-code .prompt-code:nth-child(n+8) { color: var(--mauve); }
+}
 blockquote {
 	border-left: 4px solid var(--accent);
 	padding: 0 0 0 20px;
@@ -132,7 +164,25 @@ blockquote {
 }
 hr {
 	border: none;
-	border-top: 1px solid rgb(var(--gray-light));
+	height: 1px;
+	background: hsla(var(--violet),0.5);
+	margin: 2rem -2rem;
+}
+
+figure {
+	border-left: 2px solid hsla(var(--violet),0.5);
+	margin-left: 0;
+	padding-left: 1rem;
+	padding-block: .5rem;
+}
+.prose figure > img {
+	margin: 0;
+}
+figure > figcaption {
+	font-size: 0.8em;
+	line-height: 1.2;
+	font-style: italic;
+	margin-top: 0;
 }
 @media (max-width: 720px) {
 	body {

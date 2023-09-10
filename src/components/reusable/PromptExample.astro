@@ -1,0 +1,106 @@
+---
+interface Props {
+  alternate?: boolean;
+}
+
+const { alternate = false } = Astro.props;
+---
+
+{!alternate && (
+  <section class:list={['prompt-example', { alternate }]}>
+    <div class="prompt">
+      <slot />
+    </div>
+    <aside class="prompt-images">
+      <slot name="image" />
+    </aside>
+  </section>
+)}
+
+{alternate && (
+  <section class:list={['prompt-example', { alternate }]}>
+    <aside class="prompt-images">
+      <slot name="image" />
+    </aside>
+    <div class="content">
+      <slot />
+    </div>
+    <div class="prompt">
+      <slot name="prompt" />
+    </div>
+  </section>
+)}
+
+
+<style>
+  .prompt-example {
+    grid-column: 1 / -1!important;
+    display: grid;
+    grid-template-columns: 1fr;
+    max-width: 1400px;
+    margin: auto;
+  }
+  .prompt-example :global(pre) {
+    font-size: 1rem;
+    white-space: unset;
+  }
+
+  .prompt-example :global(pre),
+  .prompt-images {
+    margin-block: 1rem;
+  }
+
+  .prompt-example :global(p) {
+    margin-block: 2rem;
+  }
+
+  .prompt-images {
+    position: relative;
+  }
+
+  .prompt-images :global(img) {
+    display: block;
+    margin-block: .5rem;
+  }
+
+  .prompt-example :global(.prompt-images > *:last-child) {
+    position: sticky;
+    top: 1rem;
+  }
+
+  .prompt-example.alternate :global(.prompt-images) {
+    position: sticky;
+    top: -25%;
+    background: hsla(var(--background-lighter), .8);
+    box-shadow: 0 0 2rem 2rem hsla(var(--background-lighter), .8);
+  }
+
+  .prompt :global(code) {
+    color: hsl(var(--coral));
+  }
+
+
+  @media (min-width: 640px) {
+    .prompt-example {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      grid-gap: 1rem;
+    }
+    .prompt-example.alternate {
+      grid-template-columns: 1fr 1fr;
+      grid-template-areas: 
+        "image image"
+        "prompt content";
+    }
+    .prompt-example.alternate .prompt-images {
+      grid-area: image;
+    }
+  }
+
+  @media (min-width: 720px) {
+    .prompt-example :global(pre),
+    .prompt-images {
+      margin-block: 0;
+    }
+  }
+</style>

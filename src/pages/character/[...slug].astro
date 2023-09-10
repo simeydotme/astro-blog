@@ -1,0 +1,21 @@
+---
+import { type CollectionEntry, getCollection } from 'astro:content';
+import { nonDrafts } from '../filters.ts';
+import CharacterPost from '../../layouts/CharacterPost.astro';
+
+export async function getStaticPaths() {
+	const posts = await getCollection('character', nonDrafts);
+	return posts.map((post) => ({
+		params: { slug: post.slug },
+		props: post,
+	}));
+}
+type Props = CollectionEntry<'character'>;
+
+const post = Astro.props;
+const { Content } = await post.render();
+---
+
+<CharacterPost {...post.data}>
+	<Content />
+</CharacterPost>

@@ -1,0 +1,51 @@
+---
+interface Props {
+	title: string;
+  id?: string;
+  open?: boolean;
+}
+
+const { title, id, open = false } = Astro.props;
+---
+
+<script>
+  const openDetails = () => {
+    const hash = window.location.hash;
+    const question = document.querySelector(`details.question${hash}`);
+    if (question) {
+      question?.setAttribute('open', '');
+    }
+  }
+  window.onhashchange = openDetails;
+  window.onload = openDetails;
+
+</script>
+
+<details class="question" {open} {id}>
+  <summary set:html={title}></summary>
+  <slot />
+</details>
+
+
+<style>
+  details {
+    background: linear-gradient( hsla(var(--violet), .125), hsla(var(--violet), 0.05) );
+    margin: 2rem -1.5rem;
+    padding: 1.25rem 1.5rem;
+    border-radius: 1rem;
+  }
+  details > :global(*:not(summary)) {
+    margin-block: 2rem;
+  }
+  summary {
+    font-style: oblique;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  summary::marker {
+    content: ""
+  }
+  summary:hover {
+    color: hsl(var(--violet));
+  }
+</style>

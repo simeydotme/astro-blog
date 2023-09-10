@@ -1,0 +1,58 @@
+---
+interface Props {
+  text: string;
+  active?: boolean;
+}
+
+const { text = 'V1', active = false } = Astro.props;
+let btnClass; 
+
+if ( active && text.startsWith('V') ) {
+  btnClass = "v-active";
+} else if ( active ) {
+  btnClass = "u-active";
+}
+
+---
+
+
+
+<button type="button" class={`midjourney-button ${ btnClass }`}>
+  {text}
+</button>
+
+
+<style>
+  .midjourney-button {
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    background-color: #4e5058;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.5;
+    padding: .33rem 1.33rem;
+    text-align: center;
+    transition: background-color 0.1s ease-in-out;
+  }
+  .midjourney-button:hover {
+    background-color: #676a74;
+    color: #fff;
+  }
+
+.midjourney-button.u-active {
+  background-color: #4f5bdb;
+}
+.midjourney-button.u-active:hover {
+  background-color: #6f7ff2;
+}
+
+.midjourney-button.v-active {
+  background-color: #248046;
+}
+.midjourney-button.v-active:hover {
+  background-color: #2faa5f;
+}
+</style>

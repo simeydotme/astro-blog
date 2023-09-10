@@ -1,0 +1,33 @@
+---
+title: 'The Theory'
+description: 'The theory behind our technique for consistent characters in Midjourney'
+pubDate: 'Sept 10, 2023'
+heroImage: '/images/covers/theory-cover.webp'
+draft: false
+---
+
+import { Image } from 'astro:assets';
+import theory1 from 'public/images/characters/theory/inpaint.webp'
+
+To resolve the issues presented [in the introduction](/character/introduction), we will use the new features of Panning & Zooming 
+([also called out-painting](https://www.cutout.pro/blog/ai-insight/what-is-outpainting-feature/)) and Region varying 
+([also called in-painting](https://en.wikipedia.org/wiki/Inpainting#Digital_inpainting)), along side the classic 
+image prompting.
+
+Crucially, we will leverage a technique called ["Character Expression Sheets"](https://en.wikipedia.org/wiki/Model_sheet) to 
+allow Midjourney to essentially store a working-memory of our Character while we do these edits.
+
+This technique works because when we are in-painting, or panning and image, Midjourney (at least for now) looks at the current
+image and the prompt we've supplied (if using remix) to try and match the existing image's style. 
+
+<Image src={theory1} alt="Character Expression Sheet Example" />
+
+> So this means that
+if the image is only a single character, with multiple versions and poses, Midjourney infers that it should try to
+re-create this character in the new region that we are in/out-painting!
+
+Now this doesn't just magically work perfectly every time. And although this image above is a decent demonstration
+of the technique in practise; it won't always work so well unless we take steps to guide it in the right direction. 
+**That's what I will explain.**
+
+[Let's get started!](/character/generating-a-base)

@@ -1,0 +1,84 @@
+---
+title: 'Introduction to Consistent Characters'
+description: 'Introduction to Generating a Base Character in Midjourney'
+pubDate: 'Sept 9, 2023'
+heroImage: '/images/covers/midjourney-cover.webp'
+draft: false
+---
+
+
+## Introduction
+
+Creating a consistent character image is a key part of many creative projects, including video game development, 
+animation, and graphic design. You're probably here because you're interested in using Midjourney to create a character in different poses,
+situations and scenery, while keeping the overall character aesthetic the same.
+
+However, it can be a challenging task to achieve a consistent look and feel across multiple image generations. 
+
+> In this series, I will demonstrate a technique I developed (using Image Prompts, Remix and Vary (Region)) for generating 
+a consistent character with Midjourney in Niji Mode.
+
+[Great, lets get started!](/character/theory) 
+
+## Existing Techniques
+
+Since having a consistent character(s) is basically the Holy Grail for creative use of Midjourney, 
+there's rightfully been a lot of work done on this topic, and there are many existing techniques that can be used to generate
+_somewhat_ consistent character images. 
+
+However, the techniques that existed previously are often limited in their ability to stay true
+to the author's original prompt/chracter concept. 
+
+I personally haven't seen another technique (_as of August 2023_) which can produce the same level of
+consistency as the technique I will describe in this series.
+
+### Image Prompting
+
+One of the most commonly used techniques is to use an image prompt. This is where you provide an image to Midjourney, 
+and it will try to generate an image that is similar to the image you provided. This technique is
+OK -- and we will use it ourselves at some point -- but there are some pitfalls;
+
+#### Pitfall 1: Lack of Consistency
+
+Midjourney [Image prompts (prompts where you supply image URLs as the first parameter)](https://docs.midjourney.com/docs/image-prompts) 
+only use the input images as a kind of "idea", and it doesn't really know how to copy the "concept" of the image, 
+seemingly only copying the visual style. This is fine for landscapes or scenes, but it's not great for characters.
+
+<mark>todo: example here</mark>  
+
+#### Pitfall 2: Chaos over time
+
+Image prompts often capture the flavour, but not the essence, of a reference image, and they lose the itegrity over time.
+
+What I mean by that is that if you use the image prompt to generate a character, and then try to generate new
+scenarios or poses for that character using the **variations** button, the character will often look very different, by
+the nature of "vary" iteself. So it's really hard to keep the character consistent over time.
+
+Additionally Midjourney's variations are prone to lose quality and start introducing artifacts the more and more you choose to vary.
+So it's not really possible to generate a huge amount and hope to find something that works (it's also time consuming).
+
+<mark>todo: example here</mark>
+
+#### Pitfall 3: Mishmash / Stickyness
+
+The pitfalls above may be combatted by providing more and more images as reference in the prompt. 
+
+But this causes another issue; the more images you provide, the more likely it is that the generated image will just be a 
+mishmash of all the images you provided, and not really a consistent character. 
+
+This also makes it almost impossible to create new scenarios and poses -- as Midjourney will add a heavy bias on to 
+matching the images, and so you will find it very difficult to generate new poses that were not in the original images.
+
+<mark>todo: example here</mark>
+
+
+## Our Technique
+
+Our technique aims to solve the problems above by using a different approach!
+
+We will be using [something called "Character Expression Sheets"](https://en.wikipedia.org/wiki/Model_sheet) to generate a consistent character.
+
+We will combine this technique with Midjourney's "In-Paint" or "Vary (Region)" feature to manipulate parts of the generated
+image while keeping the features present on our character and maintaining the "essence"!
+
+[Tell me more!](/character/theory) | [Let's get started!](/character/generating-a-base)
