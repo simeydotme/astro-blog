@@ -1,0 +1,32 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead 
+			title={'404: Not Found ~ ' + SITE_TITLE} 
+			description="The specified URL was not found on this server." 
+			image="/images/404.webp"
+			/>
+	</head>
+	<body>
+		<main>
+			<img src="/images/404.webp" alt="404: Not Found (Cute otter holding a 404 sign)" />
+		</main>
+
+		<style>
+			body, html {
+				min-height: 100vh;
+				max-width: 100vw;
+				min-height: 100dvh;
+				max-width: 100dvw;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
+		</style>
+	</body>
+</html>

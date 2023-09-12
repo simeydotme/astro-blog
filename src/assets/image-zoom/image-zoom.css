@@ -1,0 +1,90 @@
+/* styles for the image-zoom helper script */
+
+.zoomer {
+  position: relative;
+  display: inline-block;
+  cursor: zoom-in;
+}
+
+.zoomed-container {
+  position: fixed;
+  inset: 0;
+  padding: 1rem;
+  background: hsl(var(--background-lighter), 0.8);
+  backdrop-filter: blur(5px);
+  display: flex;
+  align-items: center;
+  overflow: auto;
+  animation: loadZoomContainer .25s ease-out 1 both;
+  z-index: 1000;
+}
+.zoomed-container.bottom {
+  overflow: hidden;
+}
+
+.zoomed-image {
+  height: 90%;
+  max-width: none;
+  margin: auto;
+  display: block;
+  filter: drop-shadow( 0px 20px 30px rgba(0, 0, 0, .5) );
+  cursor: zoom-out;
+  animation: loadZoomImage 1s linear(
+    0, 0.007, 0.027 2.3%, 0.11, 0.218 7.6%, 0.588 15.5%, 0.695, 0.784, 0.858,
+    0.918, 0.965 28.6%, 1 31.5%, 1.02, 1.033 36.2%, 1.041 38.9%, 1.043 41.9%,
+    1.038 47%, 1.011 61.3%, 1.003 69%, 0.998 80%, 0.999
+  ) 1 both;
+}
+
+.zoomed-container.bottom .zoomed-image {
+  animation-name: loadZoomImageBottom;
+  animation-duration: .75s;
+  animation-timing-function: linear(
+    0, 0.224, 0.417, 0.58 7.8%, 0.717, 0.829 13.4%, 0.917 16.4%, 0.983 19.6%,
+    1.009, 1.03 23.2%, 1.048 25.4%, 1.061 27.8%, 1.068 30.5%, 1.069 33.4%,
+    1.061 38.9%, 1.022 54.8%, 1.007 64.3%, 0.999 77.6% 100%
+  );
+}
+
+.zoomed-container-close {
+  position: fixed;
+  top: 0;
+  right: 0;
+  font-size: 2rem;
+  line-height: 1;
+  color: hsl(var(--foreground));
+  background: none;
+  border: none;
+  padding: 1.5rem;
+  cursor: pointer;
+  z-index: 1001;
+  aspect-ratio: 1;
+}
+
+
+@keyframes loadZoomContainer {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes loadZoomImage {
+  0% {
+    transform: translate3d(-25%, 0, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes loadZoomImageBottom {
+  0% {
+    transform: translate3d(0, 15%, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
