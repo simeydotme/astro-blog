@@ -2,10 +2,11 @@
 interface Props {
   text: string;
   active?: boolean;
+  style?: "next" | "previous";
 }
 
-const { text = 'V1', active = false } = Astro.props;
-let btnClass; 
+const { text = 'V1', active = false, style } = Astro.props;
+let btnClass = ""; 
 
 if ( active && text.startsWith('V') ) {
   btnClass = "v-active";
@@ -17,13 +18,17 @@ if ( active && text.startsWith('V') ) {
 
 
 
-<button type="button" class={`midjourney-button ${ btnClass }`}>
+<button type="button" class={`midjourney-button ${ btnClass } ${ style }`}>
+  {style === 'previous' && <svg class="arrow" xmlns="http://www.w3.org/2000/svg" width="32" viewBox="0 0 32 32"><path fill="currentColor" d="M20.834 8.037L9.64 14.5c-1.43.824-1.43 2.175 0 3l11.194 6.463c1.43.826 2.598.15 2.598-1.5V9.537c0-1.65-1.17-2.326-2.598-1.5z"/></svg>}
   {text}
+  {style === 'next' && <svg class="arrow" xmlns="http://www.w3.org/2000/svg" width="32" viewBox="0 0 32 32"><path fill="currentColor" d="M11.166 23.963L22.36 17.5c1.43-.824 1.43-2.175 0-3L11.165 8.037c-1.43-.826-2.598-.15-2.598 1.5v12.926c0 1.65 1.17 2.326 2.598 1.5z"/></svg>}
 </button>
 
 
 <style>
   .midjourney-button {
+    display: inline-flex;
+    gap: .5em;
     font-family: Arial, Helvetica, sans-serif;
     color: white;
     background-color: #4e5058;
@@ -42,17 +47,30 @@ if ( active && text.startsWith('V') ) {
     color: #fff;
   }
 
-.midjourney-button.u-active {
-  background-color: #4f5bdb;
-}
-.midjourney-button.u-active:hover {
-  background-color: #6f7ff2;
-}
+  .midjourney-button.u-active {
+    background-color: #4f5bdb;
+  }
+  .midjourney-button.u-active:hover {
+    background-color: #6f7ff2;
+  }
 
-.midjourney-button.v-active {
-  background-color: #248046;
-}
-.midjourney-button.v-active:hover {
-  background-color: #2faa5f;
-}
+  .midjourney-button.v-active {
+    background-color: #248046;
+  }
+  .midjourney-button.v-active:hover {
+    background-color: #2faa5f;
+  }
+
+  .midjourney-button .arrow {
+    max-width: 1.5em;
+    display: inline;
+  }
+
+  .midjourney-button.next, 
+  .midjourney-button.previous {
+    font-size: 1rem;
+    padding: 1em 1.33em;
+    border-radius: .5em;
+  }
+
 </style>

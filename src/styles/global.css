@@ -20,9 +20,9 @@
 	--violet: 240, 74%, 79%;
 	--gray-gradient: rgba(var(--gray-light), 50%), #fff;
 	--box-shadow: 
-		0 2px 6px rgba(var(--gray), 25%), 
-		0 8px 24px rgba(var(--gray), 33%),
-		0 16px 32px rgba(var(--gray), 33%);
+		0 2px 6px hsla(var(--background), 50%), 
+		0 8px 24px hsla(var(--background), 66%),
+		0 16px 32px hsla(var(--background), 90%);
 
 		--melon: hsla(0, 100%, 80%, 1);
 		--sunset: hsla(33, 100%, 78%, 1);
@@ -76,20 +76,14 @@ h6 {
 	color: hsl(var(--foreground-brighter));
 	line-height: 1.2;
 }
-h1 {
-	font-size: 3.052em;
-}
-h2 {
-	font-size: 2.441em;
-}
-h3 {
-	font-size: 1.953em;
-}
-h4 {
-	font-size: 1.563em;
-}
-h5 {
-	font-size: 1.25em;
+h1 { font-size: 3.052em; }
+h2 { font-size: 2.441em; }
+h3 { font-size: 1.953em; }
+h4 { font-size: 1.563em; }
+h5 { font-size: 1.25em; }
+h6 { font-size: 1em; }
+:where(h1,h2,h3,h4,h5,h6):target {
+	scroll-margin-top: 2rem;
 }
 strong,
 b {
@@ -128,6 +122,7 @@ img {
 	border-radius: 8px;
 }
 code {
+	color: hsl(var(--accent));
 	padding: 2px 5px;
 	background-color: hsl(var(--background));
 	border-radius: 2px;
@@ -136,11 +131,10 @@ pre {
 	padding: 1.5em;
 	border-radius: 8px;
 }
-pre > code {
+pre code {
 	all: unset;
 }
 @layer code {
-	
 	pre.css-variables {
 		color: hsla( var(--blue), 1 );
 	}
@@ -148,21 +142,30 @@ pre > code {
 		background: hsl(var(--background))!important;
 		line-height: 1.4;
 	}
+	pre.astro-code.demo-prompt {
+		white-space: unset;
+	}
 	pre.astro-code { color: var(--baby-powder); }
-	pre.astro-code .prompt-code:nth-child(n+1) { color: var(--melon); }
-	pre.astro-code .prompt-code:nth-child(n+2) { color: var(--sunset); }
-	pre.astro-code .prompt-code:nth-child(n+3) { color: var(--cream); }
-	pre.astro-code .prompt-code:nth-child(n+4) { color: var(--tea-green); }
-	pre.astro-code .prompt-code:nth-child(n+5) { color: var(--electric-blue); }
-	pre.astro-code .prompt-code:nth-child(n+6) { color: var(--jordy-blue); }
-	pre.astro-code .prompt-code:nth-child(n+7) { color: var(--periwinkle); }
-	pre.astro-code .prompt-code:nth-child(n+8) { color: var(--mauve); }
+	pre.astro-code .prompt-code:nth-child(9n-8) { color: var(--melon); }
+	pre.astro-code .prompt-code:nth-child(9n-7) { color: var(--sunset); }
+	pre.astro-code .prompt-code:nth-child(9n-6) { color: var(--cream); }
+	pre.astro-code .prompt-code:nth-child(9n-5) { color: var(--tea-green); }
+	pre.astro-code .prompt-code:nth-child(9n-4) { color: var(--electric-blue); }
+	pre.astro-code .prompt-code:nth-child(9n-3) { color: var(--jordy-blue); }
+	pre.astro-code .prompt-code:nth-child(9n-2) { color: var(--periwinkle); }
+	pre.astro-code .prompt-code:nth-child(9n-1) { color: var(--mauve); }
 }
 blockquote {
-	border-left: 4px solid var(--accent);
+	border-left: 4px solid hsla( var(--blue), 0.33 );
 	padding: 0 0 0 20px;
 	margin: 0px;
 	font-size: 1.333em;
+}
+blockquote.small-quote {
+	font-size: .875em;
+	line-height: 1.33;
+	color: hsl(var(--foreground-brighter), 0.66);
+	border: none;
 }
 hr {
 	border: none;

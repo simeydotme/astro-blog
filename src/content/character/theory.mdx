@@ -7,6 +7,9 @@ draft: false
 ---
 
 import { Image } from 'astro:assets';
+
+import MJ from "@components/reusable/MJ.astro"
+
 import theory1 from 'public/images/characters/theory/inpaint.webp'
 
 To resolve the issues presented [in the introduction](/character/introduction), we will use the new features of Panning & Zooming 
@@ -23,11 +26,11 @@ image and the prompt we've supplied (if using remix) to try and match the existi
 <Image src={theory1} alt="Character Expression Sheet Example" />
 
 > So this means that
-if the image is only a single character, with multiple versions and poses, Midjourney infers that it should try to
+if the image is only a single character but with multiple versions and poses, Midjourney infers that it should try to
 re-create this character in the new region that we are in/out-painting!
 
 Now this doesn't just magically work perfectly every time. And although this image above is a decent demonstration
 of the technique in practise; it won't always work so well unless we take steps to guide it in the right direction. 
 **That's what I will explain.**
 
-[Let's get started!](/character/generating-a-base)
+[<MJ text="Let's Get Started!" style="next" />](/character/generating-a-base)

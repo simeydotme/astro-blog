@@ -1,0 +1,54 @@
+---
+interface Props {
+	visible?: number
+}
+
+const { visible = 80 } = Astro.props;
+---
+
+<script>
+  const elements = document.querySelectorAll('.scroller > *');
+  const scrollTo = (ev: Event) => {
+    const el = ev.target as HTMLElement;
+    if ( el ) {
+      const scrollLeft = el.offsetLeft - (window.innerWidth - el.offsetWidth) / 2;
+      el.closest('.scroller')?.scrollTo({ left: scrollLeft, behavior: 'smooth' });
+    }
+  };
+  elements.forEach(el => {
+    el.addEventListener('click', scrollTo);
+  });
+</script>
+
+<section class="scroller" style=`--child-width: ${visible}%;`>
+
+  <slot />
+
+</section>
+
+
+<style>
+  .scroller {
+    padding-inline: 2rem;
+    padding-bottom: 2rem;
+    margin-bottom: 2rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+    display: flex;
+    gap: 2rem;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    scroll-padding: 2rem;
+    scrollbar-width: thin;
+  }
+
+  .scroller :global( > * ) {
+    flex: 0 0 var(--child-width);
+    max-width: var(--child-width);
+    box-shadow: var(--box-shadow);
+    scroll-snap-align: center;
+  }
+</style>

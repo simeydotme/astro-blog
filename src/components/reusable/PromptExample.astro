@@ -40,6 +40,9 @@ const { alternate = false } = Astro.props;
     max-width: 1400px;
     margin: auto;
   }
+  .prompt-example :global(:where(h1,h2,h3,h4,h5,h6):target) {
+    scroll-margin-top: 18rem;
+  }
   .prompt-example :global(pre) {
     font-size: 1rem;
     white-space: unset;
