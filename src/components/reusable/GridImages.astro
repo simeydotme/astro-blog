@@ -1,0 +1,30 @@
+---
+interface Props {
+	grid?: number
+}
+
+const { grid = 2 } = Astro.props;
+---
+
+<section class="image-grid" style=`--columns: ${grid};`>
+
+  <slot />
+
+</section>
+
+
+<style>
+  .image-grid {
+    margin-block: 2rem;
+    display: grid;
+    grid-template-columns: repeat( var(--columns), 1fr );
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+
+  .image-grid :global( > * ) {
+    padding: 0;
+    margin: 0;
+    box-shadow: var(--box-shadow);
+  }
+</style>

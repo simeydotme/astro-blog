@@ -8,10 +8,10 @@ interface Props {
 const { text = 'V1', active = false, style } = Astro.props;
 let btnClass = ""; 
 
-if ( active && text.startsWith('V') ) {
-  btnClass = "v-active";
+if ( active && (text.startsWith('V') || text.toLowerCase().includes("vary")) ) {
+  btnClass = "green-active";
 } else if ( active ) {
-  btnClass = "u-active";
+  btnClass = "blue-active";
 }
 
 ---
@@ -47,17 +47,17 @@ if ( active && text.startsWith('V') ) {
     color: #fff;
   }
 
-  .midjourney-button.u-active {
+  .midjourney-button.blue-active {
     background-color: #4f5bdb;
   }
-  .midjourney-button.u-active:hover {
+  .midjourney-button.blue-active:hover {
     background-color: #6f7ff2;
   }
 
-  .midjourney-button.v-active {
+  .midjourney-button.green-active {
     background-color: #248046;
   }
-  .midjourney-button.v-active:hover {
+  .midjourney-button.green-active:hover {
     background-color: #2faa5f;
   }
 

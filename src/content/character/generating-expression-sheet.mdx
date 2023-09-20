@@ -9,6 +9,7 @@ draft: false
 import { Code } from 'astro:components';
 import { Image } from 'astro:assets';
 import ScrollingImages from "@components/reusable/ScrollingImages.astro"
+import GridImages from "@components/reusable/GridImages.astro"
 import Question from "@components/reusable/Question.astro"
 import PromptExample from "@components/reusable/PromptExample.astro"
 import MJ from "@components/reusable/MJ.astro"
@@ -20,6 +21,7 @@ import april4 from 'public/images/characters/step2/april4.webp'
 import april5 from 'public/images/characters/step2/april5.webp'
 
 import aprilSheet1 from 'public/images/characters/step2/april-sheet-1.webp'
+import aprilSubtleVariants from 'public/images/characters/step2/april-subtle-variations.webp'
 import aprilVariation1 from 'public/images/characters/step2/april-variation-1.webp'
 import aprilVariation2 from 'public/images/characters/step2/april-variation-2.webp'
 import aprilVariation3 from 'public/images/characters/step2/april-variation-3.webp'
@@ -71,7 +73,7 @@ to turn it into a prompt that will generate an expression sheet for us.
   <code>
     /imagine prompt: <span class="prompt-code">[reference1.png]</span> <span class="prompt-code">[reference2.png]</span> 
     <span class="prompt-code">grid layout</span>, <span class="prompt-code">3x2</span>, <span class="prompt-code">character expression sheet</span>, 
-    <span class="prompt-code">different expressions</span><span class="prompt-code">::3</span> 
+    <span class="prompt-code">different expressions</span> 
     <span class="prompt-code">[original prompt]</span> 
     <span class="prompt-code">`--ar` 6:5</span>
   </code>
@@ -83,7 +85,7 @@ which, when considering our April character, looks like;
   <code>
     /imagine prompt: <span class="prompt-code">`https://s.mj.run/M6hbb1YEafU`</span> <span class="prompt-code">`https://s.mj.run/EEhlLxBbg-0`</span> 
     <span class="prompt-code">grid layout</span>, <span class="prompt-code">3x2</span>, <span class="prompt-code">character expression sheet</span>, 
-    <span class="prompt-code">different expressions</span><span class="prompt-code">::3</span> 
+    <span class="prompt-code">different expressions</span> 
     <span class="prompt-code">beautiful 26yo girl with bright green eyes, 
 dark tanned skin, long purple gradient hair, chunky braid hairstyle , 
 wearing a green sweater, in the style of miss nagatoro anime, 
@@ -126,11 +128,6 @@ Let's dig into the different parts, here.
   to make sure we are getting multiple expressions instead of a single image repeated 6 times. It's not totally necessary,
   but it occasionally helps.
 
-- `::3`  
-  This is a special syntax to "weight" the previous section of the prompt. This will make sure the that the parts
-  I just described above _(`grid layout, 3x2, character expression sheet, different expressions`)_ are given more 
-  power over the image composition. If you are [unfamiliar with prompt weight / multi-promps, read here](https://docs.midjourney.com/docs/multi-prompts).
-
 - `[original prompt]`  
   This is the prompt we created in the previous step. We want to include this so that Midjourney
   will consider the original description when referencing our character reference sheets. Make sure to include the original
@@ -148,7 +145,7 @@ Let's dig into the different parts, here.
   <code>
     /imagine prompt: <span class="prompt-code">`https://s.mj.run/M6hbb1YEafU`</span> <span class="prompt-code">`https://s.mj.run/EEhlLxBbg-0`</span> 
     <span class="prompt-code">grid layout</span>, <span class="prompt-code">3x2</span>, <span class="prompt-code">character expression sheet</span>, 
-    <span class="prompt-code">different expressions</span><span class="prompt-code">::3</span> 
+    <span class="prompt-code">different expressions</span>
     <span class="prompt-code">beautiful 26yo girl with bright green eyes, 
 dark tanned skin, long purple gradient hair, chunky braid hairstyle , 
 wearing a green sweater, in the style of miss nagatoro anime, 
@@ -215,15 +212,13 @@ Then use _only_ the variations as the reference. We can provide more, too, to ov
 
 I really liked this one;
 
-<Image src={april5} alt="April, reference sheet #5" />
+<Image src={aprilSubtleVariants} alt="April, reference sheet #4 with subtle variations selected" />
 
-So I will generate 3 more subtle variations of this image.
+So I will generate 3 more variations of this image using the <MJ text="🪄 Vary (Subtle)" active /> 
+feature. These 3 variations should be quite similar in style and give me a strong set of references to use.
 
-<ScrollingImages>
+<GridImages grid={3}>
   <Image src={aprilVariation1} alt="April, reference sheet variant #1" />
   <Image src={aprilVariation2} alt="April, reference sheet variant #2" />
   <Image src={aprilVariation3} alt="April, reference sheet variant #3" />
-</ScrollingImages>
-
-
-......... talk about the variants
+</GridImages>
